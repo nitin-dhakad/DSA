@@ -9,41 +9,37 @@ struct Node
 
 class Queue
 {
-public:
-    Node *Head = NULL;
-    Node *Tail = NULL;
+private:
+    Node *_Head = NULL;
+    Node *_Tail = NULL;
 
+public:
     // Constructor
     Queue() {}
     Queue(int value)
     {
-        Head = new Node();
-        Head->Value = value;
-        Tail = Head;
+        Enqueue(value);
     }
     Queue(int values[], int n)
     {
-        for (int i = 0; i < n; i++)
-        {
-            Enqueue(values[i]);
-        }
+        Enqueue(values, n);
     }
 
-    //To add values to Queue
+    // To add values to Queue
     void Enqueue(int value)
     {
-        if (Head == NULL)
+        if (_Head == NULL)
         {
-            Head = new Node();
-            Head->Value = value;
-            Tail = Head;
+            _Head = new Node();
+            _Head->Value = value;
+            _Tail = _Head;
         }
         else
         {
-            Node *Temp = Tail;
-            Tail = new Node();
-            Temp->Next = Tail;
-            Tail->Value = value;
+            Node *Temp = _Tail;
+            _Tail = new Node();
+            Temp->Next = _Tail;
+            _Tail->Value = value;
         }
     }
     void Enqueue(int values[], int n)
@@ -54,30 +50,48 @@ public:
         }
     }
 
-    //to get and remove value from the Queue
+    // to get and remove value from the Queue
     int Dequeue()
     {
-        int temp = Head->Value;
-        if (Head->Next != NULL)
-            Head = Head->Next;
+        int temp = _Head->Value;
+        if (_Head->Next != NULL)
+            _Head = _Head->Next;
         else
         {
 
-            Head = NULL;
-            Tail = NULL;
+            _Head = NULL;
+            _Tail = NULL;
         }
         return temp;
     }
 
-    //To print all values inside the Queue
+    // To print all values inside the Queue
     void Print()
     {
-        Node *Temp = Head;
+        Node *Temp = _Head;
         while (Temp != NULL)
         {
             cout << Temp->Value << " ";
             Temp = Temp->Next;
         }
+        if (_Head == NULL)
+        {
+            cout << "Queue is empty!!";
+        }
+        cout << "\n";
+    }
+    void clearMem()
+    {
+        deleteRecursively(_Head);
+    }
+    void deleteRecursively(Node *node)
+    {
+        if (node->Next != NULL)
+        {
+            deleteRecursively(node->Next);
+            cout << "value - " << node->Value << " is Being Deleted.\n";
+        }
+        free(node);
     }
 };
 
@@ -93,7 +107,13 @@ int main()
         2};
     Queue Q1(arr, 7);
     Q1.Print();
-    Q1.Enqueue(arr, 7);
+    int add[] = {9, 8, 7};
+    Q1.Enqueue(add, 3);
     Q1.Print();
+    Q1.Enqueue(67);
+    Q1.Print();
+    Q1.clearMem();
+    cout << sizeof(arr) / sizeof(arr[0]) << "\n"; // get length of arr
+    cout << end(arr) - begin(arr);                // get length of arr
     return 0;
 }
