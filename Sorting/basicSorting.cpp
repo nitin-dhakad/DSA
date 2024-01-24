@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+//select minimum index then inset at first place and so on..
 void SelectionSort(int A[], int n)
 {
     for (int i = 0; i < n - 1; i++)
@@ -15,6 +16,7 @@ void SelectionSort(int A[], int n)
         A[iMin] = temp;
     }
 }
+//swapping places if geater number found than it's consecutive number, after first loop greatest will be at last index
 void BubbleSort(int A[], int n)
 {
     for (int i = n - 1; i >= 0; i--)
@@ -34,6 +36,8 @@ void BubbleSort(int A[], int n)
             break;
     }
 }
+//In first pass start with two number subarray , swap if not in ascending order,
+//Now with 3 number sub-array compare last element with above sub-array keep swapping till get's correct position, and so on...
 void InsertionSort(int A[], int n)
 {
     for (int i = 1; i < n; i++)

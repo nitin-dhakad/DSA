@@ -89,8 +89,8 @@ public:
         if (node->Next != NULL)
         {
             deleteRecursively(node->Next);
-            cout << "value - " << node->Value << " is Being Deleted.\n";
         }
+        cout << "value - " << node->Value << " is Being Deleted.\n";
         free(node);
     }
 };
