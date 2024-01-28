@@ -8,9 +8,8 @@ using namespace std;
 vector<vector<int>> merge(vector<vector<int>> &arr) // My Approach O(n^2)
 {
     int n = arr.size();
-    int m = 2;
     vector<vector<int>> ret;
-    sort(arr.begin(), arr.end());
+    sort(arr.begin(), arr.end()); //sort the array with first element of sub array, frist element is same then it compares second element
     ret.push_back(arr[0]);
     for (int i = 1; i < n; i++)
     {
@@ -73,6 +72,27 @@ vector<vector<int>> merge2(vector<vector<int>> &arr) // Time = O(nlog(n))  space
     }
     return ret;
 }
+
+//same as above with simplied loop logic
+vector<vector<int>> merge3(vector<vector<int>>& intervals) {
+        int n = intervals.size();
+        vector<vector<int>> ret;
+        sort(intervals.begin(),intervals.end());
+        ret.push_back(intervals[0]);
+        int k = 0;
+        for(int i=1;i<n;i++){
+           if(ret[k][1]>=intervals[i][0]){
+               if(ret[k][1]<intervals[i][1] )
+                    ret[k][1] = intervals[i][1];
+           }
+           else{
+               ret.push_back(intervals[i]);
+               k++;
+           }
+        }
+        return ret;
+        
+    }
 int main()
 {
     vector<vector<int>> arr{{2, 3}, {4, 5}, {6, 7}, {8, 9}, {1, 10}};
