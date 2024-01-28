@@ -24,7 +24,7 @@ int maximumSubarray2(vector<int> &nums) // With SubArray Index
         currSum += nums[i];
         if (currSum > maxSum)
         {
-            start = end = 0;
+            // start = end = 0;
             maxSum = currSum;
             start = s;
             end = i;

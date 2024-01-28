@@ -4,8 +4,8 @@
 using namespace std;
 void sortColors(vector<int> &nums)
 {
-    int i, j, k;
-    i = j = k = 0;
+    int j, k;
+    j = k = 0;
     for (int m = 0; m < nums.size(); m++)
     {
         if (nums[m] == 0)

@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-//select minimum index then inset at first place and so on..
+//select minimum index then swap with first place and so on..
 void SelectionSort(int A[], int n)
 {
     for (int i = 0; i < n - 1; i++)
